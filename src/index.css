@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* Fond animé */
+.animated-background {
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(270deg, #4f46e5, #3b82f6, #10b981, #f59e0b, #ef4444);
+  background-size: 800% 800%;
+  animation: gradientShift 20s ease infinite;
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  z-index: -10;
+  filter: blur(120px);
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slideDown {
+  animation: slideDown 0.3s ease-out;
+}
+
+
+/* Texte filigrane */
+.bg-text {
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-text::before {
+  content: "TOURISTIQUES VOYAGE";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-20deg);
+  font-size: 8rem;
+  font-weight: 900;
+  color: rgba(34,197,94,0.08);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Carte de service */
+.card {
+  @apply bg-white shadow-md rounded-xl;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
