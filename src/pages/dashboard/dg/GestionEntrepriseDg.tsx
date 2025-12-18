@@ -7,18 +7,44 @@ import {
   updateEntreprise,
 } from "../../../api/authService";
 
+// ==============================
+// Définition du type Entreprise
+// ==============================
+interface Entreprise {
+  idEntreprise: number;
+  nomEntreprise: string;
+  emailEntreprise: string;
+  telephone1Entreprise: string;
+  telephone2Entreprise?: string;
+  siegeSocial?: string;
+  deviseEntreprise?: string;
+  couleurEntreprise?: string;
+  themeEntreprise?: string;
+  statutEntreprise?: "activé" | "désactivé";
+  logoEntreprise?: string;
+  // etc...
+}
+
+// ==============================
+// Composant
+// ==============================
 const GestionEntrepriseDg: React.FC = () => {
-  const [entreprises, setEntreprises] = useState<any[]>([]);
+  const [entreprises, setEntreprises] = useState<Entreprise[]>([]);
+  const [editData, setEditData] = useState<Partial<Entreprise>>({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
+
+  // ... ton code continue
+
 
   const [popup, setPopup] = useState<{
     type: "edit" | "delete";
     index: number;
   } | null>(null);
 
-  const [editData, setEditData] = useState<any>({});
+  
+
   const [logoEntreprise, setLogoEntreprise] = useState<File | null>(null);
 
   // =======================
@@ -47,12 +73,15 @@ const GestionEntrepriseDg: React.FC = () => {
     setPopup({ type: "edit", index });
   };
 
-  const handleEditChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEditData({
-      ...editData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  const handleEditChange = (
+  e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+) => {
+  setEditData({
+    ...editData,
+    [e.target.name]: e.target.value,
+  });
+};
+
 
   const handleLogoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {

@@ -1,5 +1,5 @@
 export const sendMessageToAi = async (message: string): Promise<string> => {
-  // 🔧 MOCK (temporaire)
+  console.log(message); // 👈 ajoute ceci pour utiliser la variable
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(

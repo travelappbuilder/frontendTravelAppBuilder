@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import BusCard, { Bus } from "./BusCard";
+import BusCard from "./BusCard";
+import type { Bus } from "./BusCard";
 
 interface Trajet {
   idTrajet: number;
